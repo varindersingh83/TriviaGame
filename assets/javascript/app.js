@@ -64,70 +64,123 @@ var questionSet = [
 //counter
 var wins = 0;
 var losses = 0;
+var qNum = 0;
 var counter = 30;
+var questionData = questionSet[qNum].question;
+var ansData1 = questionSet[qNum].answers[0];
+var ansData2 = questionSet[qNum].answers[1];
+var ansData3 = questionSet[qNum].answers[2];
+var ansData4 = questionSet[qNum].answers[3];
+var correctAnswerData = questionSet[qNum].correctAnswer;
+var blurbData = questionSet[qNum].blurb;
+
+// function nextQueston(){
+//     qNum ++;
+//     counter = 30;
+// }
 
 function decreaseCounter(){
     if (counter > 0){
         counter--
         $('#counter').text(counter);
-        UserLost();
-        clearInterval(timeOut);
     }
 }
 
 // timer
- var timeOut = setInterval(decreaseCounter, 1*1000);
+//  var timeOut = setInterval(decreaseCounter, 1*1000);
 
- //lost logic
+ //lost 
 function UserLost(){
-    if(counter == 0){
         losses ++
         console.log('losses = '+losses);
         $('button').attr("disabled", true);
-    }
+        clearInterval(timeOut);
 }
 
-// $('button').on('click', function(){
-//     var textVal = $(this).text();
-//     alert(textVal);
-//     // alert((this).attr('id'));
-// })
-
-var objLength = questionSet.length;
-console.log(objLength);
-var questionData = questionSet[0].question;
-var ansData1 = questionSet[0].answers[0];
-var ansData2 = questionSet[0].answers[1];
-var ansData3 = questionSet[0].answers[2];
-var ansData4 = questionSet[0].answers[3];
-var correctAnswerData = questionSet[0].correctAnswer;
-var blurbData = questionSet[0].blurb;
+ //won 
+ function UserWon(){
+        wins ++
+        console.log('wins = '+wins);
+        $('button').attr("disabled", true);
+        clearInterval(timeOut);
+}
 
 
+// var objLength = questionSet.length;
+// console.log(objLength);
 
+function displayQuestions(qNum){
+    questionData = questionSet[qNum].question;
+    ansData1 = questionSet[qNum].answers[0];
+    ansData2 = questionSet[qNum].answers[1];
+    ansData3 = questionSet[qNum].answers[2];
+    ansData4 = questionSet[qNum].answers[3];
+    correctAnswerData = questionSet[qNum].correctAnswer;
+    blurbData = questionSet[qNum].blurb;
+    $('#counter').text(counter);
+    var timeOut = setInterval(decreaseCounter, 1*1000);
+    $('#question').text(questionData);
+    $('#option1').text(ansData1);
+    $('#option2').text(ansData2);
+    $('#option3').text(ansData3);
+    $('#option4').text(ansData4);
+}
+
+
+
+var gNum = 0;
 $(document).ready(function(){
     $("#gameDisplay").hide();
     $("#Start").click(function(){
         $("#Start").hide();
         $("#gameDisplay").show();
-        $('#counter').text(counter);
-        setInterval(decreaseCounter, 1*1000);
-        $('#question').text(questionData);
-        $('#option1').text(ansData1);
-        $('#option2').text(ansData2);
-        $('#option3').text(ansData3);
-        $('#option4').text(ansData4);
-        $(document).on('click', 'button', function(){
-            var btnTxt = $(this).text();
-            if(btnTxt == correctAnswerData){
-                $('#blurb').text(blurbData);
-                $(this).removeClass('btn btn-light');
-                $(this).addClass('btn btn-success');
-            }else{
-                $(this).removeClass('btn btn-light');
-                $(this).addClass('btn btn-danger');
-            }
-        });
+        var i = 0
+        //  for (var i = 0; i<questionSet[gNum].length; i++){
+            displayQuestions(i);
+            // debugger;
+            $(document).on('click', 'button', function(){
+                 debugger;
+                for (var i = 1; i<questionSet.length; i++){
+                    displayQuestions(i);
+
+                    var btnTxt = $(this).text();
+                    if((btnTxt == correctAnswerData) && (counter >= 0)){
+                        $('#blurb').text(blurbData);
+                        $(this).removeClass('btn btn-light');
+                        $(this).addClass('btn btn-success');
+                        alert('you won');
+                    
+                    }else{
+                        alert('you lost');
+                        
+                    }
+                }
+            });
+        // }
+        
+            // $(document).on('click', 'button', function(){
+            //     var btnTxt = $(this).text();
+            //     if(btnTxt == correctAnswerData){
+            //         $('#blurb').text(blurbData);
+            //         $(this).removeClass('btn btn-light');
+            //         $(this).addClass('btn btn-success');
+            //         losses ++
+            //         console.log('losses = '+losses);
+            //         $('button').attr("disabled", true);
+            //         clearInterval(timeOut);
+            //         counter = 30;
+            //     }else{
+            //         $('#blurb').text("Nope! wrong answer.");
+            //         $(this).removeClass('btn btn-light');
+            //         $(this).addClass('btn btn-danger');
+            //         wins ++
+            //         console.log('wins = '+wins);
+            //         $('button').attr("disabled", true);
+            //         clearInterval(timeOut);
+            //         counter = 30;
+            //     }
+            // });
+
     });
 
 
