@@ -16,6 +16,12 @@ html, body {
     box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.46);
   }
 
+
+#question{
+  margin: 50px;
+  font-size: 25px;
+  color: #404b50;
+}
 #Start:hover { 
     background-color: #676d70;
     color: #dfe5e7;

@@ -21,10 +21,12 @@
 
     <!-- trivia game display -->
     <div id="gameDisplay">
-        <div class="container">
+        <div class="w-75 container">
             <h3 class="text-center">Time remaining: <span id="counter">0</span></h3>
+            <div id="question"  class="text-center">
+                <h1>This is a question?</h1>
+            </div>
         </div>
-        <div id="question"  class="text-center"><h1>This is a question?</h1></div>
         <div class="container">
             <div class="row">
                 <div class="col text-center">
@@ -34,8 +36,18 @@
                     <button id="option4" type="button" class="btn btn-light">Centered button</button>
                 </div> 
             </div>
+            
             <div class="col text-center">
-                <p id="blurb"></p>
+                <div id="blurb">
+                    <p id="blurbText"></p>
+                    <nav aria-label="Page navigation example">
+                    <ul class="pagination justify-content-end">
+                        <li class="page-item">
+                        <a class="page-link" href="#" id="next">Next</a>
+                        </li>
+                    </ul>
+                    </nav>
+                </div>
             </div>
         </div>
     </div>
@@ -46,7 +58,7 @@
         <div class="text-center"><h1>Loss: <span id="finalLossScore"></span></h1></div>
     </div>
 
-    <!-- jquery -->
+     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <!-- javascript local -->
     <script src="assets/javascript/app.js"></script>
