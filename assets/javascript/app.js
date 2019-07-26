@@ -27,7 +27,6 @@ function displayScore(){
     $("#finalScore").show();
 }
 
-
 // lower the counter
 function decreaseCounter(){
     if (counter > 0){
@@ -52,10 +51,6 @@ function displayQuestions(qNum){
     $('#option2').text(qSet[qNum].answers[1]);
     $('#option3').text(qSet[qNum].answers[2]);
     $('#option4').text(qSet[qNum].answers[3]);
-    
-    // if (qNum == 10){
-    //     displayScore();
-    // }
 }
 
 //game logic
@@ -101,7 +96,6 @@ $(document).ready(function(){
                 }else{
                     displayQuestions(i);
                 }
-                
             }, 10*1000);
             $(document).on('click','#next', function(){
                 console.log('clear timeout');
@@ -111,9 +105,8 @@ $(document).ready(function(){
                 }else{
                     displayQuestions(i);
                 }
-            });
-            
-        }
+            }); 
+        };
     });
 });
 
